@@ -10,31 +10,47 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class Main {
     static void main() throws IOException {
-    //crear baner
-        String texto = "Miguel Campos";
-        String banner = FigletFont.convertOneLine(texto);
-        ArrayList<String> lineas = new ArrayList<>();
-        lineas.addAll(Arrays.asList(banner.split("\n")));
-        //curriculum
-        lineas.add("");
-        lineas.add("CURRICULUM VITAE");
-        lineas.add("Estudiante de Informatica Grado Superior");
-        lineas.add("Grado medio SMX");
-        lineas.add("Educacion Secundaria Obligatoria");
-        lineas.add("Idiomas: Español e Ingles");
-        lineas.add("Habilidades");
-        lineas.add("Manejo de Java y aplicaciones ofimaticas");
-        lineas.add("Correo: miguelcampara1@gmail.com");
-        lineas.add("Telefono 615 84 95 69");
-        lineas.add("Dispuesto a trabajar y con ganas de aprender");
-
-        Screen screen = new DefaultTerminalFactory().createScreen();
-        screen.startScreen();
-        screen.setCursorPosition(null);
+        try {
 
 
+            //crear baner
+            String texto = "Miguel Campos";
+            String banner = FigletFont.convertOneLine(texto);
+            ArrayList<String> lineas = new ArrayList<>();
+            lineas.addAll(Arrays.asList(banner.split("\n")));
+            //curriculum
+            lineas.add("");
+            lineas.add("CURRICULUM VITAE");
+            lineas.add("Estudiante de Informatica Grado Superior");
+            lineas.add("Grado medio SMX");
+            lineas.add("Educacion Secundaria Obligatoria");
+            lineas.add("Idiomas: Español e Ingles");
+            lineas.add("Habilidades");
+            lineas.add("Manejo de Java y aplicaciones ofimaticas");
+            lineas.add("Correo: miguelcampara1@gmail.com");
+            lineas.add("Telefono 615 84 95 69");
+            lineas.add("Dispuesto a trabajar y con ganas de aprender");
+
+            Screen screen = new DefaultTerminalFactory().createScreen();
+            screen.startScreen();
+            screen.setCursorPosition(null);
+            //8
+            int height = screen.getTerminalSize().getRows();
+            int yOffset = height;
+            while (yOffset + lineas.size() > 0) {
+                drawFrame(screen, lineas, yOffset);
+
+                Thread.sleep(100);
+            }
+            yOffset--;
+
+        } catch (Exception e){
+            e.printStackTrace();
+
+    }
     }
     private static void drawFrame(Screen screen, List<String> lines, int yOffset)
             throws IOException {
