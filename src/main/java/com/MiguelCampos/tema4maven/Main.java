@@ -43,14 +43,20 @@ public class Main {
             while (yOffset + lineas.size() > 0) {
                 drawFrame(screen, lineas, yOffset);
 
-                Thread.sleep(100);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    break;
+                }
+
+                yOffset--;
             }
-            yOffset--;
 
-        } catch (Exception e){
+            screen.stopScreen();
+
+        } catch (Exception e) {
             e.printStackTrace();
-
-    }
+        }
     }
     private static void drawFrame(Screen screen, List<String> lines, int yOffset)
             throws IOException {
